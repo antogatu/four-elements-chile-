@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Four Elements Chile - Expediciones Privadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f0f;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 15, 15, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: #f0f0f0;
+      text-transform: uppercase;
+    }
+
+    nav a:hover { color: #d4a574; }
+
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #f0f0f0;
+      background: transparent;
+      color: #f0f0f0;
+      font-size: 11px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .nav-btn.primary {
+      background: #f0f0f0;
+      color: #0f0f0f;
+    }
+
+    .hero {
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(rgba(15, 15, 15, 0.3), rgba(15, 15, 15, 0.5)), 
+                  linear-gradient(135deg, #546b7a 0%, #8b9aa8 100%);
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem;
+      position: relative;
+      margin-top: 80px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid #d4a574;
+      margin-bottom: 2rem;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #d4a574;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      max-width: 900px;
+    }
+
+    .section {
+      width: 100%;
+      padding: 6rem 4rem;
+    }
+
+    .section.dark {
+      background: #0f0f0f;
+      color: #f0f0f0;
+    }
+
+    .section.light {
+      background: #e8e4df;
+      color: #0f0f0f;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      color: #d4a574;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+
+    .manifesto {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .manifesto p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .expeditions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .expedition-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: #2a2a2a;
+    }
+
+    .expedition-image {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #3a4a5a 0%, #2a3a4a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .expedition-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(15, 15, 15, 0.95));
+    }
+
+    .expedition-number {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #d4a574;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .expedition-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .expedition-meta {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    .four-journeys {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .journey-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .journey-text p {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .journey-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #6b5a47 0%, #4a3f33 100%);
+    }
+
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .guide-item {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #6b5a47 0%, #4a3f33 100%);
+      position: relative;
+    }
+
+    .guide-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #f0f0f0;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 1rem;
+    }
+
+    footer {
+      background: #000;
+      padding: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+
+    footer h4 {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    footer a, footer p {
+      font-size: 13px;
+      color: #aaa;
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+    }
+
+    footer a:hover { color: #d4a574; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 3rem;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-close {
+      float: right;
+      font-size: 28px;
+      cursor: pointer;
+      color: #aaa;
+      background: none;
+      border: none;
+    }
+
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 0.5rem;
+      clear: both;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      color: #f0f0f0;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: #d4a574;
+      color: #0f0f0f;
+      border: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .floating-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+    }
+
+    .floating-cta button {
+      padding: 1rem 2rem;
+      background: #d4a574;
+      color: #0f0f0f;
+      border: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .section h2 { font-size: 2rem; }
+      .four-journeys { grid-template-columns: 1fr; }
+      .guides-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">FOUR ELEMENTS</div>
+    <nav>
+      <a href="#exp">Expediciones</a>
+      <a href="#guides">Guías</a>
+      <a href="#contact">Contacto</a>
+      <span style="font-size: 12px;">EN · ES</span>
+      <button class="nav-btn" onclick="openModal()">Contact Us</button>
+      <button class="nav-btn primary" onclick="openModal()">Plan a Journey</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-label">TORRES DEL PAINE · PATAGONIA</div>
+    <h1>El viento aquí tiene nombre.</h1>
+  </section>
+
+  <section class="section dark">
+    <div class="manifesto">
+      <p style="font-size: 20px;">A country narrow enough to hold every climate on earth, and quiet enough that you still hear them. We design slow, considered journeys across the four landscapes of Chile.</p>
+    </div>
+  </section>
+
+  <section class="section dark" id="exp">
+    <div class="section-label">WHAT YOU CAN DO</div>
+    <h2>Adventures, considered.</h2>
+    
+    <div class="expeditions-grid">
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">01 / 14</div>
+          <div class="expedition-title">Patagonia Wild</div>
+          <div class="expedition-meta">7 DAYS · BACKCOUNTRY SKI</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">02 / 14</div>
+          <div class="expedition-title">Volcano Tour</div>
+          <div class="expedition-meta">7 DAYS · SKI TOURING</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">03 / 14</div>
+          <div class="expedition-title">Heliskiing Urban</div>
+          <div class="expedition-meta">4 DAYS · HELISKII</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">04 / 14</div>
+          <div class="expedition-title">Chillán Backcountry</div>
+          <div class="expedition-meta">7 DAYS · SKI</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">05 / 14</div>
+          <div class="expedition-title">Altiplano Desert</div>
+          <div class="expedition-meta">10+ DAYS · SKI</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">06 / 14</div>
+          <div class="expedition-title">Trekking Patagonia</div>
+          <div class="expedition-meta">7 DAYS · TREK</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">07 / 14</div>
+          <div class="expedition-title">Torres del Paine</div>
+          <div class="expedition-meta">4 NIGHTS · TREK</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">08 / 14</div>
+          <div class="expedition-title">Coast Ride</div>
+          <div class="expedition-meta">7 DAYS · BIKE</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">09 / 14</div>
+          <div class="expedition-title">Local Surf</div>
+          <div class="expedition-meta">7 DAYS · SURF</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">10 / 14</div>
+          <div class="expedition-title">Elements: Bike & Surf</div>
+          <div class="expedition-meta">7 DAYS · MULTI</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">11 / 14</div>
+          <div class="expedition-title">Elements: Snow & Surf</div>
+          <div class="expedition-meta">7 DAYS · MULTI</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">12 / 14</div>
+          <div class="expedition-title">South of Chile</div>
+          <div class="expedition-meta">15 DAYS · ROADTRIP</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">13 / 14</div>
+          <div class="expedition-title">SALADAS Surf</div>
+          <div class="expedition-meta">8 DAYS · WOMEN</div>
+        </div>
+      </div>
+
+      <div class="expedition-card">
+        <div class="expedition-image">Imagen</div>
+        <div class="expedition-overlay">
+          <div class="expedition-number">14 / 14</div>
+          <div class="expedition-title">Jackson Hole Ski</div>
+          <div class="expedition-meta">7 DAYS · SKI USA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="section-label">THE FOUR JOURNEYS</div>
+    <h2>One country. Four worlds.</h2>
+    
+    <div class="four-journeys">
+      <div class="journey-text">
+        <h3>Earth</h3>
+        <p>Granite towers, gravel passes, and the long silence of the southern steppe.</p>
+      </div>
+      <div class="journey-image"></div>
+    </div>
+
+    <div class="four-journeys">
+      <div class="journey-image"></div>
+      <div class="journey-text">
+        <h3>Air</h3>
+        <p>The clearest skies on the planet, and the kind of night that recalibrates a person.</p>
+      </div>
+    </div>
+
+    <div class="four-journeys">
+      <div class="journey-text">
+        <h3>Water</h3>
+        <p>Cold left-hand swells, fishing villages, and a coastline that goes on for 4,300 km.</p>
+      </div>
+      <div class="journey-image"></div>
+    </div>
+
+    <div class="four-journeys">
+      <div class="journey-image"></div>
+      <div class="journey-text">
+        <h3>Fire</h3>
+        <p>Active volcanoes, hot springs, and old-growth forests along the Andean spine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark" id="guides">
+    <div class="section-label">ATELIER · THE GUIDES</div>
+    <h2>Meet the people who know the route.</h2>
+
+    <p style="font-size: 15px; margin-bottom: 2rem;">Our guides are climbers, sommeliers, astronomers, and arrieros. They were born here. Each journey is paired with one principal guide, supported by a small, hand-picked team.</p>
+
+    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; font-size: 20px;">Our team</h3>
+    <div class="guides-grid">
+      <div class="guide-item"><div class="guide-label">DIEGO · ATACAMA</div></div>
+      <div class="guide-item"><div class="guide-label">MARÍA · PATAGONIA</div></div>
+      <div class="guide-item"><div class="guide-label">TOMÁS · VOLCANOES</div></div>
+      <div class="guide-item"><div class="guide-label">SOFÍA · WINE</div></div>
+      <div class="guide-item"><div class="guide-label">MATEO · SURF</div></div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div>
+      <h4>Expeditions</h4>
+      <p><a href="#">Patagonia</a></p>
+      <p><a href="#">Atacama</a></p>
+      <p><a href="#">Litoral</a></p>
+      <p><a href="#">Andes</a></p>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <p><a href="#">About us</a></p>
+      <p><a href="#">Our guides</a></p>
+      <p><a href="#">Philosophy</a></p>
+      <p><a href="#">Blog</a></p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Santiago & Puerto Natales</p>
+      <p>+56 (9) 3673-3700</p>
+      <p><a href="mailto:info@fourelementschile.com">info@fourelementschile.com</a></p>
+    </div>
+    <div>
+      <h4>Newsletter</h4>
+      <p>La Carta Trimestral. Sin promociones, jamás.</p>
+      <form onsubmit="handleNewsletterSubmit(event)" style="margin-top: 1rem;">
+        <input type="email" placeholder="Tu correo" required style="width: 100%; padding: 0.6rem; background: #1a1a1a; border: 1px solid #3a3a3a; color: #f0f0f0; font-size: 12px; margin-bottom: 0.5rem;">
+        <button type="submit" style="width: 100%; padding: 0.6rem; background: #d4a574; color: #0f0f0f; border: none; cursor: pointer; font-size: 11px; text-transform: uppercase;">Suscribir</button>
+      </form>
+    </div>
+  </footer>
+
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3>Plan a Journey</h3>
+      <p style="font-size: 12px; color: #aaa; margin-bottom: 2rem;">Tell us about your ideal trip.</p>
+
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>Full name</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" placeholder="Patagonia, Atacama...">
+        </div>
+        <div class="form-group">
+          <label>Tell us about your ideal trip</label>
+          <textarea rows="4" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send proposal</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="floating-cta">
+    <button onclick="openModal()">PLAN A JOURNEY</button>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('contactModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('active');
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      alert('Thank you! We will respond soon.');
+      closeModal();
+      event.target.reset();
+    }
+
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      alert('Thank you for subscribing!');
+      event.target.reset();
+    }
+
+    document.getElementById('contactModal').addEventListener('click', function(event) {
+      if (event.target === this) closeModal();
+    });
+  </script>
+
+</body>
+</html>
